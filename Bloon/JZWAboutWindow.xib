@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="JZWAboutWindow" customModule="Bloon" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="IMN-4p-Oa7" id="Cnu-fE-Qn3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="About Bloon" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IMN-4p-Oa7">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="284" height="284"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <view key="contentView" id="iFv-7W-bMs">
+                <rect key="frame" x="0.0" y="0.0" width="284" height="284"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AKH-NC-f1w">
+                        <rect key="frame" x="83" y="146" width="118" height="118"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="118" id="myu-Zj-7Rb"/>
+                            <constraint firstAttribute="height" constant="118" id="nDH-1v-xPW"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon" id="Fv2-hD-01h"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GgI-iA-PTV">
+                        <rect key="frame" x="97" y="108" width="91" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="87" id="R3t-KH-Hjx"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Bloon" allowsEditingTextAttributes="YES" id="i6b-0h-9IP">
+                            <font key="font" metaFont="systemBlack" size="25"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-Hq-OlN">
+                        <rect key="frame" x="107" y="70" width="70" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version 1.0" id="cCR-qS-Qes">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ugm-c0-UBd">
+                        <rect key="frame" x="80" y="45" width="125" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="©2016 Jacob Weiss" id="ef6-rB-RdK">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-CB-dlb">
+                        <rect key="frame" x="28" y="20" width="228" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Math parsing done by GCMathParser" id="y2I-7M-VTt">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ugm-c0-UBd" firstAttribute="leading" secondItem="iFv-7W-bMs" secondAttribute="leading" constant="82" id="0zy-xb-rhU"/>
+                    <constraint firstItem="AKH-NC-f1w" firstAttribute="leading" secondItem="iFv-7W-bMs" secondAttribute="leading" constant="83" id="BO0-lR-c56"/>
+                    <constraint firstItem="AKH-NC-f1w" firstAttribute="top" secondItem="iFv-7W-bMs" secondAttribute="top" constant="20" id="CAS-Wv-Wfg"/>
+                    <constraint firstItem="N1B-CB-dlb" firstAttribute="top" secondItem="iFv-7W-bMs" secondAttribute="top" constant="247" id="NTe-OR-QMD"/>
+                    <constraint firstItem="GgI-iA-PTV" firstAttribute="top" secondItem="iFv-7W-bMs" secondAttribute="top" constant="146" id="U7v-ya-BS6"/>
+                    <constraint firstItem="RxC-Hq-OlN" firstAttribute="top" secondItem="iFv-7W-bMs" secondAttribute="top" constant="197" id="XLd-9B-275"/>
+                    <constraint firstItem="N1B-CB-dlb" firstAttribute="leading" secondItem="iFv-7W-bMs" secondAttribute="leading" constant="30" id="Ykz-R2-fa0"/>
+                    <constraint firstItem="RxC-Hq-OlN" firstAttribute="leading" secondItem="iFv-7W-bMs" secondAttribute="leading" constant="109" id="b3r-iQ-GWN"/>
+                    <constraint firstItem="GgI-iA-PTV" firstAttribute="leading" secondItem="iFv-7W-bMs" secondAttribute="leading" constant="99" id="b8g-gv-aQd"/>
+                    <constraint firstItem="ugm-c0-UBd" firstAttribute="top" secondItem="iFv-7W-bMs" secondAttribute="top" constant="222" id="eka-S0-MLU"/>
+                    <constraint firstAttribute="bottom" secondItem="AKH-NC-f1w" secondAttribute="bottom" constant="146" id="hBf-Ep-9yx"/>
+                    <constraint firstAttribute="trailing" secondItem="AKH-NC-f1w" secondAttribute="trailing" constant="83" id="rHU-KD-tkh"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="CAV-B0-JVF"/>
+            </connections>
+            <point key="canvasLocation" x="440" y="407"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="icon" width="512" height="512"/>
+    </resources>
+</document>

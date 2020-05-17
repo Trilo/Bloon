@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="JZWHistoryViewController" customModule="Bloon" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="qPH-S6-rfu" id="hdw-yV-tha"/>
+                <outlet property="history" destination="gde-kv-Ra2" id="ohG-Ej-zEy"/>
+                <outlet property="historyBG" destination="rsa-h0-GtC" id="a7X-PN-buq"/>
+                <outlet property="view" destination="c22-O7-iKe" id="9PL-xc-hlo"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView wantsLayer="YES" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="583" height="352"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qPH-S6-rfu">
+                    <rect key="frame" x="0.0" y="0.0" width="583" height="332"/>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="rsa-h0-GtC" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="329" width="583" height="23"/>
+                    <subviews>
+                        <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gde-kv-Ra2">
+                            <rect key="frame" x="0.0" y="1" width="583" height="22"/>
+                            <pathCell key="cell" selectable="YES" focusRingType="none" alignment="left" id="blv-gV-r0e">
+                                <font key="font" metaFont="systemBold"/>
+                                <url key="url" string="file://localhost/Applications/"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </pathCell>
+                            <connections>
+                                <action selector="pathControlSingleClick:" target="-2" id="4qF-s1-Kk6"/>
+                                <outlet property="delegate" destination="-2" id="Mch-S5-4eB"/>
+                            </connections>
+                        </pathControl>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="gde-kv-Ra2" secondAttribute="trailing" id="Ffq-I7-r5J"/>
+                        <constraint firstItem="gde-kv-Ra2" firstAttribute="leading" secondItem="rsa-h0-GtC" secondAttribute="leading" id="P2h-p0-fpk"/>
+                        <constraint firstItem="gde-kv-Ra2" firstAttribute="top" secondItem="rsa-h0-GtC" secondAttribute="top" id="hFu-lH-qlD"/>
+                        <constraint firstAttribute="height" constant="23" id="iCS-i0-CaL"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qPH-S6-rfu" secondAttribute="bottom" id="a15-It-NyI"/>
+                <constraint firstItem="rsa-h0-GtC" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="b6H-gv-o7i"/>
+                <constraint firstItem="qPH-S6-rfu" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="gyY-Y2-Rj1"/>
+                <constraint firstItem="qPH-S6-rfu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="hwT-Cf-HkJ"/>
+                <constraint firstAttribute="trailing" secondItem="qPH-S6-rfu" secondAttribute="trailing" id="lNK-bM-nlU"/>
+                <constraint firstItem="rsa-h0-GtC" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qyG-ws-gPA"/>
+                <constraint firstAttribute="trailing" secondItem="rsa-h0-GtC" secondAttribute="trailing" id="vEb-ZJ-9gu"/>
+            </constraints>
+            <point key="canvasLocation" x="427.5" y="464"/>
+        </customView>
+    </objects>
+</document>

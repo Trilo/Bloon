@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="JZWMainViewController" customModule="Bloon" customModuleProvider="target">
+            <connections>
+                <outlet property="configureGrapherBG" destination="gQr-g0-PrF" id="ixV-Qt-I3m"/>
+                <outlet property="configureGrapherButton" destination="zQi-0M-43Y" id="aHk-uC-iFq"/>
+                <outlet property="configureParserBG" destination="MYU-TK-MEc" id="ZaK-ug-71X"/>
+                <outlet property="configureParserButton" destination="iZb-2l-fQF" id="yYY-Zs-9In"/>
+                <outlet property="view" destination="c22-O7-iKe" id="I5r-z9-a3h"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="590" height="554"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nei-NT-FcV">
+                    <rect key="frame" x="223" y="472" width="144" height="62"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bloon" id="rTp-Lr-IgI">
+                        <font key="font" metaFont="systemBold" size="52"/>
+                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="gQr-g0-PrF" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+                    <rect key="frame" x="20" y="214" width="550" height="121"/>
+                    <subviews>
+                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zQi-0M-43Y">
+                            <rect key="frame" x="498" y="40" width="39" height="38"/>
+                            <buttonCell key="cell" type="round" bezelStyle="circular" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="left" borderStyle="border" imageScaling="proportionallyDown" id="uJi-cV-ngj">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="label"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="configureGrapherClicked:" target="-2" id="lX8-C4-wn7"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pAH-oF-AdA">
+                            <rect key="frame" x="18" y="31" width="473" height="62"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Configure Grapher" id="wjq-Ph-5oH">
+                                <font key="font" metaFont="systemBold" size="52"/>
+                                <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="zQi-0M-43Y" secondAttribute="trailing" constant="20" id="VxN-Ns-ndg"/>
+                        <constraint firstItem="zQi-0M-43Y" firstAttribute="top" secondItem="gQr-g0-PrF" secondAttribute="top" constant="46" id="WZY-Az-mix"/>
+                        <constraint firstAttribute="height" constant="121" id="dMZ-bg-oWP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="gradientIndex">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="0.98228745559999997" blue="0.98382089809999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="19"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="MYU-TK-MEc" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+                    <rect key="frame" x="20" y="343" width="550" height="121"/>
+                    <subviews>
+                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iZb-2l-fQF">
+                            <rect key="frame" x="498" y="40" width="39" height="38"/>
+                            <buttonCell key="cell" type="round" bezelStyle="circular" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="left" borderStyle="border" imageScaling="proportionallyDown" id="y2T-49-vht">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="label"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="configureParserClicked:" target="-2" id="tGS-Tx-bzj"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yC-Ax-UdQ">
+                            <rect key="frame" x="18" y="31" width="433" height="62"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Configure Parser" id="vPw-bd-X9v">
+                                <font key="font" metaFont="systemBold" size="52"/>
+                                <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="121" id="6sf-Xq-nnO"/>
+                        <constraint firstAttribute="trailing" secondItem="iZb-2l-fQF" secondAttribute="trailing" constant="20" id="K4Z-R3-EUh"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="550" id="SWd-K1-YyO"/>
+                        <constraint firstItem="iZb-2l-fQF" firstAttribute="top" secondItem="MYU-TK-MEc" secondAttribute="top" constant="46" id="uel-Pc-gCm"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="nsTopColor">
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="nsBottomColor">
+                            <color key="value" red="0.73457228539999997" green="0.7277641399" blue="0.70823710299999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="19"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="gradientIndex">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="0.98228745559999997" blue="0.98382089809999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="nfp-d6-B8c" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+                    <rect key="frame" x="20" y="20" width="550" height="121"/>
+                    <subviews>
+                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pHe-Ow-iVA">
+                            <rect key="frame" x="498" y="40" width="39" height="38"/>
+                            <buttonCell key="cell" type="round" bezelStyle="circular" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="left" borderStyle="border" imageScaling="proportionallyDown" id="v4N-a7-LfL">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="label"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="runClicked:" target="-2" id="M5t-JX-Jwq"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tp2-qV-PjE">
+                            <rect key="frame" x="18" y="31" width="473" height="62"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Run" id="pJ7-U3-JyX">
+                                <font key="font" metaFont="systemBold" size="52"/>
+                                <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="121" id="16q-RN-YxD"/>
+                        <constraint firstAttribute="trailing" secondItem="pHe-Ow-iVA" secondAttribute="trailing" constant="20" id="c7h-J6-UUe"/>
+                        <constraint firstItem="pHe-Ow-iVA" firstAttribute="top" secondItem="nfp-d6-B8c" secondAttribute="top" constant="46" id="whk-4L-Xdg"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="gradientIndex">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="0.98228745559999997" blue="0.98382089809999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="19"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="gQr-g0-PrF" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="3yZ-dr-qfw"/>
+                <constraint firstAttribute="centerX" secondItem="nei-NT-FcV" secondAttribute="centerX" constant="0.5" id="8Wj-Qd-pFB"/>
+                <constraint firstItem="gQr-g0-PrF" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="219" id="Cui-1M-QHD"/>
+                <constraint firstItem="MYU-TK-MEc" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="DNA-XP-iKf"/>
+                <constraint firstItem="nfp-d6-B8c" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="TmQ-k7-Haa"/>
+                <constraint firstAttribute="trailing" secondItem="MYU-TK-MEc" secondAttribute="trailing" constant="20" id="aCe-du-QcS"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gQr-g0-PrF" secondAttribute="bottom" constant="214" id="ams-kF-R3m"/>
+                <constraint firstItem="nfp-d6-B8c" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="413" id="dWh-6W-Mbr"/>
+                <constraint firstAttribute="trailing" secondItem="gQr-g0-PrF" secondAttribute="trailing" constant="20" id="kc2-go-s8g"/>
+                <constraint firstItem="nei-NT-FcV" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="nPi-wN-qmW"/>
+                <constraint firstItem="MYU-TK-MEc" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="90" id="o5K-Q0-aoq"/>
+                <constraint firstAttribute="trailing" secondItem="nfp-d6-B8c" secondAttribute="trailing" constant="20" id="xVG-Uc-d5U"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="nsTopColor">
+                    <color key="value" red="0.0" green="0.44960220740000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="nsBottomColor">
+                    <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="reversed" value="NO"/>
+                <userDefinedRuntimeAttribute type="number" keyPath="gradientIndex">
+                    <integer key="value" value="9"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="0"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="451" y="422"/>
+        </customView>
+        <customFormatter id="L6T-XC-IaR"/>
+    </objects>
+    <resources>
+        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
+    </resources>
+</document>

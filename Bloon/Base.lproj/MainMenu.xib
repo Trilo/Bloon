@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Bloon" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutMenu" destination="5kV-Vb-QxS" id="Tq5-kf-TEO"/>
+                <outlet property="loadConfig" destination="IAo-SY-fd9" id="hLL-aB-mE1"/>
+                <outlet property="newConfig" destination="YT9-Sj-YKK" id="9xT-rr-4dg"/>
+                <outlet property="prefMenu" destination="50Z-eR-I0H" id="kXU-W5-dRF"/>
+                <outlet property="runConfig" destination="meG-sU-nZg" id="UMU-3x-5SO"/>
+                <outlet property="runConfigNoSave" destination="QRd-dZ-jMu" id="Bmk-0V-qZ6"/>
+                <outlet property="saveConfig" destination="pxx-59-PXV" id="cPd-5N-7eC"/>
+                <outlet property="saveConfigAs" destination="Z2f-9H-trl" id="UEJ-pM-UkI"/>
+                <outlet property="stopConfig" destination="we0-7w-qQX" id="n9B-8w-c4m"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+            <items>
+                <menuItem title="Bloon" id="1Xt-HY-uBw">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Bloon" systemMenu="apple" id="uQy-DD-JDr">
+                        <items>
+                            <menuItem title="About Bloon" id="5kV-Vb-QxS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                            <menuItem title="Preferences..." keyEquivalent="," id="50Z-eR-I0H">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="mIP-vb-90t"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="hQM-rO-SoZ"/>
+                            <menuItem title="Hide Bloon" keyEquivalent="h" id="Olw-nP-bQN">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-1" id="VT4-aY-XCT"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show All" id="Kd2-mp-pUS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-1" id="Dhg-Le-xox"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                            <menuItem title="Quit Bloon" keyEquivalent="q" id="4sb-4s-VLi">
+                                <connections>
+                                    <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="File" id="dMs-cI-mzQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="File" id="bib-Uj-vzu">
+                        <items>
+                            <menuItem title="Run" keyEquivalent="r" id="meG-sU-nZg"/>
+                            <menuItem title="Run No Output" alternate="YES" keyEquivalent="R" id="QRd-dZ-jMu"/>
+                            <menuItem title="Stop" keyEquivalent="T" id="we0-7w-qQX"/>
+                            <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                            <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                <connections>
+                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
+                                <connections>
+                                    <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save as…" alternate="YES" keyEquivalent="S" id="Z2f-9H-trl">
+                                <connections>
+                                    <action selector="saveDocument:" target="-1" id="QtT-WA-zd2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="New" keyEquivalent="n" id="YT9-Sj-YKK"/>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Edit" id="K4g-Fr-zMZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Edit" id="UeC-Ci-gAy">
+                        <items>
+                            <menuItem title="Copy" keyEquivalent="c" id="q1X-o8-hQk">
+                                <connections>
+                                    <action selector="copy:" target="-1" id="40E-NX-O7E"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Cut" keyEquivalent="x" id="61S-OR-UjD">
+                                <connections>
+                                    <action selector="cut:" target="-1" id="6Q3-ra-iCA"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Paste" keyEquivalent="v" id="Yzy-GB-5rb">
+                                <connections>
+                                    <action selector="paste:" target="-1" id="qqu-PB-x7g"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="View" id="Z8X-AK-pLt" userLabel="View">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="View" id="srQ-mI-Qdo">
+                        <items>
+                            <menuItem title="Error Report" id="POL-9o-ynG">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="viewErrorReport:" target="Voe-Tx-rLC" id="3Or-cY-3FR"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="61a-p0-RZ4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Window" systemMenu="window" id="NvN-Mh-1mJ">
+                        <items>
+                            <menuItem title="Minimize" keyEquivalent="m" id="xzW-xl-RM3">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="Dbe-ni-CT9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom" id="1gE-an-E1e">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="dzt-8r-42A"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="t1K-84-2OX"/>
+                            <menuItem title="Bring All to Front" id="goV-Wv-ckQ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="arrangeInFront:" target="-1" id="frx-By-Ijx"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="lyx-Y0-DPl"/>
+            </connections>
+        </menu>
+    </objects>
+</document>

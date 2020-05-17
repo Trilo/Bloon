@@ -1,0 +1,545 @@
+/*
+func setupArduinoTest()
+{
+var octothorp =         JZWConstCharToken(label: "", char: "#")
+var dollarSign =        JZWConstCharToken(label: "", char: "$")
+var percent =           JZWConstCharToken(label: "", char: "%")
+var nullStr =  JZWNullTerminatedStringToken(label: "Alph")
+var cu =                     JZWBinIntToken(label: "CountUp", numBytes: 1)
+var cd =                     JZWBinIntToken(label: "CountDown", numBytes: 1)
+var c2u =                    JZWBinIntToken(label: "Count2Up", numBytes: 1)
+var c2d =                    JZWBinIntToken(label: "Count2Down", numBytes: 1)
+var asciiInt =             JZWAsciiIntToken(label: "AsciiInt")
+var sinValue =             JZWAsciiDoubleToken(label: "Sin")
+var doub =   JZWConstLengthAsciiDoubleToken(label: "Double", numBytes: 8)
+
+var sentence0 = JZWSentence(name: "Test0", tokens: [octothorp, asciiInt, percent, sinValue, percent, cu, cd])
+
+var sentence1 = JZWSentence(name: "Test1", tokens: [octothorp, doub, dollarSign, c2u, c2d, nullStr])
+
+var sentinel = JZWConstStringToken(label: "", string: "$GPGGA,")
+var time =     JZWAsciiDoubleToken(label: "Time")
+var comma =      JZWConstCharToken(label: "", char: ",")
+var lat =      JZWAsciiDoubleToken(label: "Lat")
+var north =           JZWCharToken(label: "N/S")
+var lon =      JZWAsciiDoubleToken(label: "Lon")
+var east =            JZWCharToken(label: "E/W")
+var qual =        JZWAsciiIntToken(label: "Qual")
+var numSat =      JZWAsciiIntToken(label: "NumSat")
+var hdop =     JZWAsciiDoubleToken(label: "HDOP")
+var alt =      JZWAsciiDoubleToken(label: "Alt")
+var end = JZWTerminatedStringToken(label: "", ch: "*")
+var cs =  JZWAsciiHexChecksumToken(label: "", range: NSMakeRange(1, -1))
+var latlon = JZWGroupToken(label: "Pos", tokens: [lat, comma, north, comma, lon, comma, east])
+var gpgga = JZWGroupToken(label: "GPGGA", tokens: [sentinel, time, comma, latlon, comma, qual, comma, numSat, comma, hdop, comma, alt, end, cs])
+var ampersand = JZWConstCharToken(label: "", char: "&")
+var repeat = JZWRepeatToken(label: "GPS", token: gpgga)
+
+var gps = JZWSentence(name: "GPSStrings", tokens: [ampersand, repeat])
+
+parser = JZWParser(portName: "Arduino", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/TestData", portPath:JZWParser.getPorts()[3], baud: 230400, sentences: [sentence0, sentence1, gps])
+
+println(parser!.tokenLabels)
+
+parser!.open()
+
+let plot = JZWPlot(x: "Test0.AsciiInt", y: "Test0.CountUp", scatter: true, line: false)
+let plot2 = JZWPlot(x: "Test0.AsciiInt", y: "Test0.CountDown", scatter: true, line: false)
+plot2.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot3 = JZWPlot(x: "Test0.AsciiInt", y: "Test1.Count2Up", scatter: true, line: false)
+plot3.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+let plot4 = JZWPlot(x: "Test0.AsciiInt", y: "Test1.Count2Down", scatter: true, line: false)
+plot4.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0.6, alpha: 1))
+let plot5 = JZWPlot(x: "Test0.AsciiInt", y: "Test0.Sin", scatter: true, line: true)
+plot5.setColor(NSColor(calibratedRed: 0.6, green: 0.6, blue: 0, alpha: 1))
+
+let glgraph = JZWGLGraph()
+
+glgraph.addPlot(plot)
+glgraph.addPlot(plot2)
+glgraph.addPlot(plot3)
+glgraph.addPlot(plot4)
+glgraph.addPlot(plot5)
+
+(self.window.contentView as! NSView).addSubview(glgraph)
+
+var dict: [NSObject : AnyObject] = [NSString(string: "graph") : glgraph]
+(self.window.contentView as! NSView).addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[graph(>=600)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+(self.window.contentView as! NSView).addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[graph(>=400)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+}
+
+func setupColdChamber()
+{
+// ***************************** Data Sentence
+
+var dataStart = JZWConstCharToken(label: "DataStart", char: "#")
+var time = JZWBinIntToken(label: "time", numBytes: 4)
+var pres0 = JZWBinIntToken(label: "pressure0", numBytes: 2)
+var temp0 = JZWBinIntToken(label: "temp0", numBytes: 2)
+var accx = JZWBinIntToken(label: "accx", numBytes: 2)
+var accy = JZWBinIntToken(label: "accy", numBytes: 2)
+var accz = JZWBinIntToken(label: "accz", numBytes: 2)
+var magx = JZWBinIntToken(label: "magx", numBytes: 2)
+var magy = JZWBinIntToken(label: "magy", numBytes: 2)
+var magz = JZWBinIntToken(label: "magz", numBytes: 2)
+var gyrox = JZWBinIntToken(label: "gyrox", numBytes: 2)
+var gyroy = JZWBinIntToken(label: "gyroy", numBytes: 2)
+var gyroz = JZWBinIntToken(label: "gyroz", numBytes: 2)
+var temp1 = JZWBinIntToken(label: "temp1", numBytes: 2)
+var pres1 = JZWBinIntToken(label: "pressure1", numBytes: 4)
+
+var s = JZWSentence(name: "main", tokens: [dataStart, time, pres0, temp0, accx, accy, accz, magx, magy, magz, gyrox, gyroy, gyroz, temp1, pres1])
+//$GPGGA,202559.000,0000.0000,N,00000.0000,E,0,00,0.0,0.0,M,0.0,M,,0000*64Xs”&
+// ***************************** GPS Sentence
+
+var sentinel = JZWConstStringToken(label: "", string: "GPGGA,")
+var gpstime =     JZWAsciiDoubleToken(label: "Time")
+var comma =      JZWConstCharToken(label: "", char: ",")
+var lat =      JZWAsciiDoubleToken(label: "Lat")
+var north =           JZWCharToken(label: "N/S")
+var lon =      JZWAsciiDoubleToken(label: "Lon")
+var east =            JZWCharToken(label: "E/W")
+var qual =        JZWAsciiIntToken(label: "Qual")
+var numSat =      JZWAsciiIntToken(label: "NumSat")
+var hdop =     JZWAsciiDoubleToken(label: "HDOP")
+var alt =      JZWAsciiDoubleToken(label: "Alt")
+var end = JZWTerminatedStringToken(label: "", ch: "*")
+var cs =  JZWAsciiHexToken(label: "Checksum")
+var cr = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0x0D)
+var nl = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0x0A)
+var latlon = JZWGroupToken(label: "Pos", tokens: [lat, comma, north, comma, lon, comma, east])
+var ardTime = JZWBinIntToken(label: "ardTime", numBytes: 4)
+
+var gps = JZWSentence(name: "GPGGA", tokens: [sentinel, gpstime, comma, latlon, comma, qual, comma, numSat, comma, hdop, comma, alt, end, cs, cr, nl, ardTime])
+
+// ***************************** Parser
+
+parser = JZWParser(portName: "ColdTest", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/InputData/", portPath:JZWParser.getPorts().last!, baud: 115200, sentences: [s, gps])
+
+// ***************************** Acceleration
+
+var accGraph: JZWGLGraph = JZWGLGraph(title: "Accelerometer (G)")
+
+let axPlot = JZWPlot(x: "main.time/1000000", y: "main.accx*0.00183", scatter: true, line: false)
+let ayPlot = JZWPlot(x: "main.time/1000000", y: "main.accy*0.00183", scatter: true, line: false)
+ayPlot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+let azPlot = JZWPlot(x: "main.time/1000000", y: "main.accz*0.00183", scatter: true, line: false)
+azPlot.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+let amPlot = JZWPlot(x: "main.time/1000000", y: "sqrt(main.accx^2 + main.accy^2 + main.accz^2)*0.00183", scatter: true, line: false)
+amPlot.setColor(NSColor(calibratedRed: 0.6, green: 0.6, blue: 0, alpha: 1))
+
+accGraph.addPlot(axPlot)
+accGraph.addPlot(ayPlot)
+accGraph.addPlot(azPlot)
+accGraph.addPlot(amPlot)
+
+// ***************************** Magnetometer
+
+var magGraph: JZWGLGraph = JZWGLGraph(title: "Magnetometer (Gauss)")
+
+let mxPlot = JZWPlot(x: "main.time/1000000", y: "main.magx/1100", scatter: true, line: false)
+let myPlot = JZWPlot(x: "main.time/1000000", y: "main.magy/1100", scatter: true, line: false)
+myPlot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+let mzPlot = JZWPlot(x: "main.time/1000000", y: "main.magz/980", scatter: true, line: false)
+mzPlot.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+magGraph.addPlot(mxPlot)
+magGraph.addPlot(myPlot)
+magGraph.addPlot(mzPlot)
+
+// ***************************** Gyroscope
+
+var gyrGraph: JZWGLGraph = JZWGLGraph(title: "Gyroscope (Deg/Sec)")
+
+let gxPlot = JZWPlot(x: "main.time/1000000", y: "main.gyrox*0.07", scatter: true, line: false)
+let gyPlot = JZWPlot(x: "main.time/1000000", y: "main.gyroy*0.07", scatter: true, line: false)
+gyPlot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+let gzPlot = JZWPlot(x: "main.time/1000000", y: "main.gyroz*0.07", scatter: true, line: false)
+gzPlot.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+gyrGraph.addPlot(gxPlot)
+gyrGraph.addPlot(gyPlot)
+gyrGraph.addPlot(gzPlot)
+
+// ***************************** Pressure
+
+var presGraph: JZWGLGraph = JZWGLGraph(title: "Pressure (PSI)")
+
+let p0Plot = JZWPlot(x: "main.time/1000000", y: "(main.pressure0 * 5 / 1024 - 0.1 * 5) * (15 - 0) / (0.8 * 5) + 0", scatter: true, line: false)
+let p1Plot = JZWPlot(x: "main.time/1000000", y: "(main.pressure1 / 4096) * 0.0145037738", scatter: true, line: false)
+p1Plot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+
+presGraph.addPlot(p0Plot)
+presGraph.addPlot(p1Plot)
+
+// ***************************** Temperature
+
+var tempGraph: JZWGLGraph = JZWGLGraph(title: "Temperature (Celcius)")
+
+let t0Plot = JZWPlot(x: "main.time/1000000", y: "((-18*log((40*main.temp0/(5*1024-main.temp0)-0.7912)/29.7746)) - 32) * 5/9 + 26.2", scatter: true, line: false)
+let t1Plot = JZWPlot(x: "main.time/1000000", y: "main.temp1/480+42.5", scatter: true, line: false)
+t1Plot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+
+tempGraph.addPlot(t0Plot)
+tempGraph.addPlot(t1Plot)
+
+// ***************************** Setup layout
+
+let gridView = JZWGridBoxView(rows: 3, cols: 3)
+
+gridView.addSubview(accGraph, inRect: NSMakeRect(0, 1, 1, 2))
+gridView.addSubview(magGraph, inRect: NSMakeRect(1, 1, 1, 2))
+gridView.addSubview(gyrGraph, inRect: NSMakeRect(2, 1, 1, 2))
+
+let innerGrid = JZWGridBoxView(rows: 1, cols: 2)
+
+gridView.addSubview(innerGrid, inRect: NSMakeRect(0, 0, 3, 1))
+
+innerGrid.addSubview(presGraph, inRect: NSMakeRect(0, 0, 1, 1))
+innerGrid.addSubview(tempGraph, inRect: NSMakeRect(1, 0, 1, 1))
+
+let contentView = self.window.contentView as! NSView;
+
+contentView.addSubview(gridView)
+
+var dict: [NSObject : AnyObject] = [NSString(string: "graph") : gridView]
+contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[graph(>=600)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[graph(>=400)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+
+// Start!
+
+//parser!.open()
+parser?.readData("/Users/jacob/Dropbox/Programming/Swift/Bloonv3/InputData/capture.txt")
+}
+
+func parseTestFile()
+{
+// Insert code here to initialize your application
+//[0xFB][length][0x26][3:addr][rssi][#][4:time][2:pressure0][2:temp][2:acc.x][2:acc.y][2:acc.z][2:mag.x][2:mag.y][2:mag.z][2:gyro.x][2:gyro.y][2:gyro.z][2:pressuretemp][4:pressure1]
+
+var glgraph0: JZWGLGraph = JZWGLGraph(title: "85 Accelerometer (G)")
+var glgraph1: JZWGLGraph = JZWGLGraph(title: "85 Magnetometer (Gauss)")
+var glgraph2: JZWGLGraph = JZWGLGraph(title: "85 Gyroscope (Deg/Sec)")
+var glgraph3: JZWGLGraph = JZWGLGraph(title: "89 Acceleromete (G)")
+var glgraph4: JZWGLGraph = JZWGLGraph(title: "89 Magnetometer (Gauss)")
+var glgraph5: JZWGLGraph = JZWGLGraph(title: "89 Gyroscope (Deg/Sec)")
+var glgraph6: JZWGLGraph = JZWGLGraph(title: "PIP")
+
+var packetStart = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0xFB)
+
+var packetType = JZWConstBinIntToken(label: "PackeType", numBytes: 1, constValue: 0x26)
+var addr89 = JZWConstBinIntToken(label: "addr89", numBytes: 3, constValue: 0x001F89)
+var addr85 = JZWConstBinIntToken(label: "addr85", numBytes: 3, constValue: 0x001F85)
+var rssi = JZWBinIntToken(label: "RSSI", numBytes: 1)
+var dataStart = JZWConstCharToken(label: "DataStart", char: "#")
+var time = JZWBinIntToken(label: "Time", numBytes: 4)
+var accx = JZWBinIntToken(label: "accx", numBytes: 2)
+var accy = JZWBinIntToken(label: "accy", numBytes: 2)
+var accz = JZWBinIntToken(label: "accz", numBytes: 2)
+var magx = JZWBinIntToken(label: "magx", numBytes: 2)
+var magy = JZWBinIntToken(label: "magy", numBytes: 2)
+var magz = JZWBinIntToken(label: "magz", numBytes: 2)
+var gyrox = JZWBinIntToken(label: "gyrox", numBytes: 2)
+var gyroy = JZWBinIntToken(label: "gyroy", numBytes: 2)
+var gyroz = JZWBinIntToken(label: "gyroz", numBytes: 2)
+var pip = JZWBinIntToken(label: "pip", numBytes: 2)
+
+var sentence89 = JZWSentence(name: "89", tokens: [dataStart, time, accx, accy, accz, magx, magy, magz, gyrox, gyroy, gyroz, pip])
+var sentence85 = JZWSentence(name: "85", tokens: [dataStart, time, accx, accy, accz, magx, magy, magz, gyrox, gyroy, gyroz, pip])
+
+var parser89 = JZWParser(portName: "89", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/DNTData/89", portPath: "", baud: 0, sentences: [sentence89])
+var parser85 = JZWParser(portName: "85", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/DNTData/85", portPath: "", baud: 0, sentences: [sentence85])
+
+var data89 = JZWParsableDataToken(label: "data89", parser: parser89)
+var data85 = JZWParsableDataToken(label: "data85", parser: parser85)
+
+var parse89 = JZWConstLengthGroupToken(label: "89", tokens: [packetType, addr89, rssi, data89])
+var parse85 = JZWConstLengthGroupToken(label: "85", tokens: [packetType, addr85, rssi, data85])
+
+var dntsentence89 = JZWSentence(name: "DNT89", tokens: [packetStart, parse89])
+var dntsentence85 = JZWSentence(name: "DNT85", tokens: [packetStart, parse85])
+
+var parser = JZWParser(portName: "DNTParser", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/DNTData", portPath: "", baud: 0, sentences: [dntsentence85, dntsentence89])
+
+parser.openFiles()
+
+println(JZWParser.getAllTokenLabels())
+
+// For 85
+
+let plot0 = JZWPlot(x: "85.Time/1000000", y: "85.accx*0.0122", scatter: true, line: false)
+let plot1 = JZWPlot(x: "85.Time/1000000", y: "85.accy*0.0122", scatter: true, line: false)
+plot1.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot2 = JZWPlot(x: "85.Time/1000000", y: "85.accz*0.0122", scatter: true, line: false)
+plot2.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+let plot21 = JZWPlot(x: "85.Time/1000000", y: "sqrt(85.accx^2 + 85.accy^2 + 85.accz^2)*0.0122", scatter: true, line: false)
+plot21.setColor(NSColor(calibratedRed: 0.6, green: 0.6, blue: 0, alpha: 1))
+
+glgraph0.addPlot(plot0)
+glgraph0.addPlot(plot1)
+glgraph0.addPlot(plot2)
+glgraph0.addPlot(plot21)
+
+let plot3 = JZWPlot(x: "85.Time/1000000", y: "85.magx/1100", scatter: true, line: false)
+let plot4 = JZWPlot(x: "85.Time/1000000", y: "85.magy/1100", scatter: true, line: false)
+plot4.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot5 = JZWPlot(x: "85.Time/1000000", y: "85.magz/980", scatter: true, line: false)
+plot5.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+glgraph1.addPlot(plot3)
+glgraph1.addPlot(plot4)
+glgraph1.addPlot(plot5)
+
+let plot6 = JZWPlot(x: "85.Time/1000000", y: "85.gyrox*0.07", scatter: true, line: false)
+let plot7 = JZWPlot(x: "85.Time/1000000", y: "85.gyroy*0.07", scatter: true, line: false)
+plot7.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot8 = JZWPlot(x: "85.Time/1000000", y: "85.gyroz*0.07", scatter: true, line: false)
+plot8.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+glgraph2.addPlot(plot6)
+glgraph2.addPlot(plot7)
+glgraph2.addPlot(plot8)
+
+// For 89
+
+let plot9 = JZWPlot(x: "89.Time/1000000", y: "89.accx*0.0122", scatter: true, line: false)
+let plot10 = JZWPlot(x: "89.Time/1000000", y: "89.accy*0.0122", scatter: true, line: false)
+plot10.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot11 = JZWPlot(x: "89.Time/1000000", y: "89.accz*0.0122", scatter: true, line: false)
+plot11.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+let plot111 = JZWPlot(x: "89.Time/1000000", y: "sqrt(89.accx^2 + 89.accy^2 + 89.accz^2)*0.0122", scatter: true, line: false)
+plot111.setColor(NSColor(calibratedRed: 0.6, green: 0.6, blue: 0, alpha: 1))
+
+glgraph3.addPlot(plot9)
+glgraph3.addPlot(plot10)
+glgraph3.addPlot(plot11)
+glgraph3.addPlot(plot111)
+
+let plot12 = JZWPlot(x: "89.Time/1000000", y: "89.magx/1100", scatter: true, line: false)
+let plot13 = JZWPlot(x: "89.Time/1000000", y: "89.magy/1100", scatter: true, line: false)
+plot13.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot14 = JZWPlot(x: "89.Time/1000000", y: "89.magz/980", scatter: true, line: false)
+plot14.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+glgraph4.addPlot(plot12)
+glgraph4.addPlot(plot13)
+glgraph4.addPlot(plot14)
+
+let plot15 = JZWPlot(x: "89.Time/1000000", y: "89.gyrox*0.07", scatter: true, line: false)
+let plot16 = JZWPlot(x: "89.Time/1000000", y: "89.gyroy*0.07", scatter: true, line: false)
+plot16.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+let plot17 = JZWPlot(x: "89.Time/1000000", y: "89.gyroz*0.07", scatter: true, line: false)
+plot17.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+glgraph5.addPlot(plot15)
+glgraph5.addPlot(plot16)
+glgraph5.addPlot(plot17)
+
+let plot18 = JZWPlot(x: "85.Time/1000000", y: "85.pip", scatter: true, line: false)
+let plot19 = JZWPlot(x: "89.Time/1000000", y: "89.pip", scatter: true, line: false)
+plot19.setColor(NSColor(calibratedRed: 0, green: 0, blue: 0.6, alpha: 1))
+
+glgraph6.addPlot(plot18)
+glgraph6.addPlot(plot19)
+
+let gridView = JZWGridBoxView(rows: 3, cols: 2)
+
+gridView.addSubview(glgraph0, inRect: NSMakeRect(0, 1, 1, 1))
+gridView.addSubview(glgraph3, inRect: NSMakeRect(1, 1, 1, 1))
+
+gridView.addSubview(glgraph6, inRect: NSMakeRect(0, 2, 2, 1))
+
+let gridLeft = JZWGridBoxView(rows: 1, cols: 2)
+let gridRight = JZWGridBoxView(rows: 1, cols: 2)
+
+gridView.addSubview(gridLeft, inRect: NSMakeRect(0, 0, 1, 1))
+gridView.addSubview(gridRight, inRect: NSMakeRect(1, 0, 1, 1))
+
+gridLeft.addSubview(glgraph1, inRect: NSMakeRect(0, 0, 1, 1))
+gridLeft.addSubview(glgraph2, inRect: NSMakeRect(1, 0, 1, 1))
+
+gridRight.addSubview(glgraph4, inRect: NSMakeRect(0, 0, 1, 1))
+gridRight.addSubview(glgraph5, inRect: NSMakeRect(1, 0, 1, 1))
+
+let contentView = self.window.contentView as! NSView
+
+contentView.addSubview(gridView)
+
+let dict = NSDictionary(object: gridView, forKey: NSString(string: "grid"))
+
+contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[grid]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[grid]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+
+parser.readData("/Users/jacob/Dropbox/Programming/Swift/Bloonv3/InputData/Flight.dat")
+}
+
+func parseFlight()
+{
+// Insert code here to initialize your application
+//[0xFB][length][0x26][3:addr][rssi][#][4:time][2:pressure0][2:temp][2:acc.x][2:acc.y][2:acc.z][2:mag.x][2:mag.y][2:mag.z][2:gyro.x][2:gyro.y][2:gyro.z][2:pressuretemp][4:pressure1]
+
+var packetStart = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0xFB)
+
+var packetType = JZWConstBinIntToken(label: "PackeType", numBytes: 1, constValue: 0x26)
+var addrFF = JZWConstBinIntToken(label: "addrFF", numBytes: 3, constValue: 0xFF0000)
+var rssi = JZWBinIntToken(label: "RSSI", numBytes: 1)
+
+var dataStart = JZWConstCharToken(label: "DataStart", char: "#")
+var time = JZWBinIntToken(label: "Time", numBytes: 4)
+var pres0 = JZWBinIntToken(label: "pressure0", numBytes: 2)
+var temp0 = JZWBinIntToken(label: "temp0", numBytes: 2)
+var accx = JZWBinIntToken(label: "accx", numBytes: 2)
+var accy = JZWBinIntToken(label: "accy", numBytes: 2)
+var accz = JZWBinIntToken(label: "accz", numBytes: 2)
+var magx = JZWBinIntToken(label: "magx", numBytes: 2)
+var magy = JZWBinIntToken(label: "magy", numBytes: 2)
+var magz = JZWBinIntToken(label: "magz", numBytes: 2)
+var gyrox = JZWBinIntToken(label: "gyrox", numBytes: 2)
+var gyroy = JZWBinIntToken(label: "gyroy", numBytes: 2)
+var gyroz = JZWBinIntToken(label: "gyroz", numBytes: 2)
+var temp1 = JZWBinIntToken(label: "temp1", numBytes: 2)
+var pres1 = JZWBinIntToken(label: "pressure1", numBytes: 4)
+
+var sentenceFF = JZWSentence(name: "FF", tokens: [dataStart, time, pres0, temp0, accx, accy, accz, magx, magy, magz, gyrox, gyroy, gyroz, temp1, pres1])
+
+
+// GPS Sentence
+//$GPGGA,202559.000,0000.0000,N,00000.0000,E,0,00,0.0,0.0,M,0.0,M,,0000*64Xs”&
+
+var gpsDataStart = JZWConstCharToken(label: "GPSDataStart", char: "$")
+var ardTime = JZWBinIntToken(label: "ardTime", numBytes: 4)
+var sentinel = JZWConstStringToken(label: "", string: "GPGGA,")
+var gpstime =     JZWAsciiDoubleToken(label: "time")
+var comma =      JZWConstCharToken(label: "", char: ",")
+var lat =      JZWAsciiDoubleToken(label: "Lat")
+var north =           JZWCharToken(label: "N/S")
+var lon =      JZWAsciiDoubleToken(label: "Lon")
+var east =            JZWCharToken(label: "E/W")
+var qual =        JZWAsciiIntToken(label: "Qual")
+var numSat =      JZWAsciiIntToken(label: "NumSat")
+var hdop =     JZWAsciiDoubleToken(label: "HDOP")
+var alt =      JZWAsciiDoubleToken(label: "Alt")
+var end = JZWTerminatedStringToken(label: "", ch: "*")
+var cs =  JZWAsciiHexToken(label: "Checksum")
+var cr = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0x0D)
+var nl = JZWConstBinIntToken(label: "", numBytes: 1, constValue: 0x0A)
+var latlon = JZWGroupToken(label: "Pos", tokens: [lat, comma, north, comma, lon, comma, east])
+
+var gps = JZWSentence(name: "GPGGA", tokens: [gpsDataStart, ardTime, nl, sentinel, gpstime, comma, latlon, comma, qual, comma, numSat, comma, hdop, comma, alt, end, cs, cr, nl])
+
+// Parsers
+
+/*
+var parserFF = JZWParser(portName: "FF", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/InputData/", portPath: "", baud: 0, sentences: [sentenceFF, gps])
+
+parserFF.openFiles()
+
+var dataFF = JZWParsableDataToken(label: "dataFF", parser: parserFF)
+
+var parseFF = JZWConstLengthGroupToken(label: "FF", tokens: [packetType, addrFF, rssi, dataFF])
+
+var dntsentenceFF = JZWSentence(name: "DNTFF", tokens: [packetStart, parseFF])
+
+*/
+
+print(JZWParser.getPorts())
+
+var parser = JZWParser(portName: "DNTParser", dataPath: "/Users/jacob/Dropbox/Programming/Swift/Bloonv3/InputData/", portPath: JZWParser.getPorts()[3], baud: 115200, sentences: [sentenceFF, gps])
+
+parser.openFiles()
+
+println(JZWParser.getAllTokenLabels())
+
+// ***************************** Pressure
+
+var presGraph: JZWGLGraph = JZWGLGraph(title: "Pressure (PSI)")
+
+let p0Plot = JZWPlot(x: "Index", y: "(FF.pressure0 * 5 / 1024 - 0.1 * 5) * (15 - 0) / (0.8 * 5) + 0", scatter: true, line: false)
+let p1Plot = JZWPlot(x: "Index", y: "(FF.pressure1 / 4096) * 0.0145037738", scatter: true, line: false)
+p1Plot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+
+presGraph.addPlot(p0Plot)
+presGraph.addPlot(p1Plot)
+
+// ***************************** Temperature
+
+var tempGraph: JZWGLGraph = JZWGLGraph(title: "Temperature (Celcius)")
+
+let t0Plot = JZWPlot(x: "Index", y: "((-18*log((40*FF.temp0/(5*1024-FF.temp0)-0.7912)/29.7746)) - 32) * 5/9 + 26.2", scatter: true, line: false)
+let t1Plot = JZWPlot(x: "Index", y: "FF.temp1/480+42.5", scatter: true, line: false)
+t1Plot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+
+tempGraph.addPlot(t0Plot)
+tempGraph.addPlot(t1Plot)
+
+// ***************************** Altitude
+
+var altGraph: JZWGLGraph = JZWGLGraph(title: "Altitude (Meters)")
+
+let aPlot = JZWPlot(x: "Index", y: "GPGGA.Alt", scatter: true, line: false)
+aPlot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+
+altGraph.addPlot(aPlot)
+
+
+// ***************************** Magnetometer
+
+var magnetometerGraph: JZWGLGraph = JZWGLGraph(title: "Magnetometer (Gauss)")
+
+let magxPlot = JZWPlot(x: "Index", y: "FF.magx/1100", scatter: true, line: false)
+let magyPlot = JZWPlot(x: "Index", y: "FF.magy/1100", scatter: true, line: false)
+magyPlot.setColor(NSColor(calibratedRed: 0.34, green: 0.75, blue: 0.95, alpha: 1))
+let magzPlot = JZWPlot(x: "Index", y: "FF.magz/980", scatter: true, line: false)
+magzPlot.setColor(NSColor(calibratedRed: 0.6, green: 0, blue: 0, alpha: 1))
+
+magnetometerGraph.addPlot(magxPlot)
+magnetometerGraph.addPlot(magyPlot)
+magnetometerGraph.addPlot(magzPlot)
+
+
+// ***************************** RSSI
+
+/*
+var rssiGraph: JZWGLGraph = JZWGLGraph(title: "RSSI (?)")
+
+let rssiPlot = JZWPlot(x: "Index", y: "DNTFF.FF.RSSI", scatter: true, line: false)
+
+rssiGraph.addPlot(rssiPlot)
+*/
+
+// ***************************** Position
+
+var posGraph: JZWGLGraph = JZWGLGraph(title: "Distance From Us (?)")
+
+let posPlot = JZWPlot(x: "GPGGA.Pos.Lat", y: "GPGGA.Pos.Lon", scatter: true, line: false)
+
+posGraph.addPlot(posPlot)
+
+
+// ***************************** Window
+
+let gridView = JZWGridBoxView(rows: 3, cols: 2)
+
+gridView.addSubview(magnetometerGraph, inRect: NSMakeRect(0, 0, 1, 1))
+gridView.addSubview(tempGraph, inRect: NSMakeRect(0, 1, 1, 1))
+gridView.addSubview(altGraph, inRect: NSMakeRect(1, 0, 1, 1))
+gridView.addSubview(presGraph, inRect: NSMakeRect(1, 1, 1, 1))
+//gridView.addSubview(rssiGraph, inRect: NSMakeRect(0, 2, 1, 1))
+gridView.addSubview(posGraph, inRect: NSMakeRect(1, 2, 1, 1))
+
+let contentView = self.window.contentView as! NSView
+
+//contentView.addSubview(gridView)
+
+//let dict = NSDictionary(object: gridView, forKey: NSString(string: "grid"))
+
+//contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[grid]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+//contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[grid]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dict))
+
+//parser.readData("/Users/jacob/Dropbox/Programming/Swift/Bloonv3/fd/DNTParser_2014.11.08.10.31.23_raw.dat")
+//parser.readData("/Users/jacob/Dropbox/Programming/Swift/Bloonv3/fd/dumpA.dat")
+//parser.readData("/Users/jacob/Dropbox/Programming/Swift/Bloonv3/fd/Capture_Recov_Yagi.dat")
+//parser.open()
+}
+
+*/

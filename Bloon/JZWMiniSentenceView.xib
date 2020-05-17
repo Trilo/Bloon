@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="JZWMiniSentenceViewController">
+            <connections>
+                <outlet property="button" destination="K2w-wm-uYP" id="fgT-oq-wfF"/>
+                <outlet property="titleField" destination="Etk-KG-Ocd" id="5C0-og-KXB"/>
+                <outlet property="view" destination="Nms-hV-MSR" id="o18-N1-9RW"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView verticalCompressionResistancePriority="1000" id="Nms-hV-MSR" customClass="JZWGradient" customModule="Bloon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="502" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDY-eH-5Ah">
+                    <rect key="frame" x="221" y="-107" width="38" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="LvM-tb-sEk">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Etk-KG-Ocd">
+                    <rect key="frame" x="20" y="8" width="439" height="22"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Sentence Name" bezelStyle="round" id="f2V-Ko-aDr">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="7PW-am-CVj"/>
+                        <outlet property="formatter" destination="Owy-kN-cus" id="kfU-9e-DgD"/>
+                    </connections>
+                </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K2w-wm-uYP">
+                    <rect key="frame" x="461" y="-3" width="39" height="38"/>
+                    <buttonCell key="cell" type="round" bezelStyle="circular" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="left" borderStyle="border" imageScaling="proportionallyDown" id="dvl-VG-Mwa">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="label"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonPressed:" target="-2" id="eCX-0k-nVf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="K2w-wm-uYP" firstAttribute="top" secondItem="Nms-hV-MSR" secondAttribute="top" constant="6" id="3fP-qv-C5b"/>
+                <constraint firstAttribute="trailing" secondItem="Etk-KG-Ocd" secondAttribute="trailing" constant="43" id="4Et-4J-aG7"/>
+                <constraint firstItem="Etk-KG-Ocd" firstAttribute="top" secondItem="Nms-hV-MSR" secondAttribute="top" constant="8" id="4RY-5T-Jre"/>
+                <constraint firstAttribute="bottom" secondItem="Etk-KG-Ocd" secondAttribute="bottom" constant="8" id="FAO-Kr-0gw"/>
+                <constraint firstItem="Etk-KG-Ocd" firstAttribute="leading" secondItem="Nms-hV-MSR" secondAttribute="leading" constant="20" id="Fru-vc-teO"/>
+                <constraint firstAttribute="bottom" secondItem="K2w-wm-uYP" secondAttribute="bottom" constant="6" id="Ken-Yz-SQy"/>
+                <constraint firstAttribute="trailing" secondItem="K2w-wm-uYP" secondAttribute="trailing" constant="9" id="ucn-yW-dXg"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="gradientIndex">
+                    <integer key="value" value="6"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="19"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" red="1" green="0.98228745559999997" blue="0.98382089809999995" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <integer key="value" value="2"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="511" y="429"/>
+        </customView>
+        <customFormatter id="Owy-kN-cus" customClass="JZWVariableNameFormatter" customModule="Bloon" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
+    </resources>
+</document>
